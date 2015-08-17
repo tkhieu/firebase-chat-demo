@@ -6,7 +6,7 @@ You are expected to implement a small chat application.
 ### 1. Add dummy chat view
 * It has a chat message list
 * It has an edit text view
-* TODO: add mock
+* ![Mock 1](https://raw.githubusercontent.com/khacanh/public-assets/master/mocks/chat_1.png)
 
 ### 2. Integrate to Firebase
 * Follow installation steps https://www.firebase.com/docs/android/quickstart.html
@@ -35,7 +35,7 @@ You are expected to implement a small chat application.
 * Generate a unique user id, `"User " + Build.ID`
 * Change data structure to support user name
 * Change chat message item type to reflect sender and receiver
-* TODO: add mock
+* ![Mock 2](https://raw.githubusercontent.com/khacanh/public-assets/master/mocks/chat_2.png)
 
 ### 6. Support offline mode
 * Chat messages after being synced from Firebase should be cached locally with SQlite
