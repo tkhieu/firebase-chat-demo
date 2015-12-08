@@ -22,6 +22,7 @@ You are expected to implement a small chat application.
     $messageId1: "Message 1",
     $messageId2: "Message 2"
   }
+}
 ```
 * Save data to Firebase https://www.firebase.com/docs/web/guide/saving-data.html
 
