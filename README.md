@@ -10,14 +10,13 @@ You are expected to implement a small chat application.
 ### 2. Write to Firebase
 * For each message submitted in step #1, it should also be saved to Firebase
 * Example code:
-```
+```java
   Firebase ref = new Firebase(FIREBASE_URL);
   // Use push() to create a unique & chronologically ordered key  
   ref.push().set(message);
-}
 ```
 * Data structure should look like this: 
-```
+```json
 {
   "chat": {
     $messageId1: "Message 1",
@@ -28,23 +27,28 @@ You are expected to implement a small chat application.
 
 ### 3. Read from Firebase
 * Example code:
-```
+```java
   Firebase ref = new Firebase(FIREBASE_URL);
+  
   // ChildEventListener is best for retrieving items in a list
   ref.addChildEventListener(new ChildEventListener() {
     @Override
     public void onChildAdded(DataSnapshot dataSnapshot, String s) {
       // Do stuff
     }
+    
     @Override
     public void onChildChanged(DataSnapshot dataSnapshot, String s) {}
+    
     @Override
     public void onChildRemoved(DataSnapshot dataSnapshot) {}
+    
     @Override
     public void onChildMoved(DataSnapshot dataSnapshot, String s) {}
+    
     @Override
     public void onCancelled(FirebaseError firebaseError) {}
-    });
+  });
 ```
 * Compile and run the app on 2 devices to test the real-time chat
 * Read data from Firebase https://www.firebase.com/docs/android/guide/retrieving-data.html
@@ -52,7 +56,7 @@ You are expected to implement a small chat application.
 ### 4. Add user name to chat
 * Generate a unique user name, `"USER_<UNIQUE_4_DIGITS_NUMBER>"`
 * Change data structure to support user name
-```
+```json
 {
   "chat": {
     $messageId1: {
