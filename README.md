@@ -79,8 +79,3 @@ You are expected to implement a small chat application.
 * Show a simple status icon next to the chat message
 * You probably want to look back at Firebase API to update data
 * ![Mock 3](https://raw.githubusercontent.com/khacanh/public-assets/master/mocks/chat_3.png)
-
-### 6. Support offline mode
-* Chat messages after being synced from Firebase should be cached locally with SQlite
-* Should not use `Firebase.getDefaultConfig().setPersistenceEnabled(true);` as it is not stable
-* The goal is to replace CursorLoader with RxJava implementation
