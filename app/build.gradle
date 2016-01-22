@@ -22,7 +22,12 @@ android {
         exclude 'META-INF/LICENSE'
         exclude 'META-INF/LICENSE-FIREBASE.txt'
         exclude 'META-INF/NOTICE'
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
     }
+    lintOptions {
+        disable 'InvalidPackage'
+    }
+
 }
 
 dependencies {
@@ -32,6 +37,7 @@ dependencies {
     compile 'com.firebase:firebase-client-android:2.4.1+'
     compile 'javax.annotation:jsr250-api:1.0'
     compile 'com.google.code.gson:gson:2.5'
+    compile 'com.jakewharton:butterknife:7.0.1'
 
 
 }

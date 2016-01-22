@@ -19,10 +19,13 @@ import java.util.List;
 public class ChatViewAdapter extends ArrayAdapter<ChatItem> {
 
     private Context context;
+    List<ChatItem> chatItemList;
 
     public ChatViewAdapter(Context context, int resource, List<ChatItem> objects) {
         super(context, resource, objects);
         this.context = context;
+        this.chatItemList = objects;
+
     }
 
     @Override
