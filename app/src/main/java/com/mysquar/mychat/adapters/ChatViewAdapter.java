@@ -45,15 +45,16 @@ public class ChatViewAdapter extends ArrayAdapter<ChatItem> {
         TextView textViewStatus;
         if(ChatHelper.getInstance(context).isFromThisUser(item)){
             messageView = inflater.inflate(R.layout.cell_chat_item_mine, parent, false);
+            textViewStatus = (TextView) messageView.findViewById(R.id.text_view_status);
+            textViewStatus.setText(item.getStatus());
         } else {
             messageView = inflater.inflate(R.layout.cell_chat_item_other, parent, false);
+            textViewUsername = (TextView) messageView.findViewById(R.id.text_view_username);
+            textViewUsername.setText(item.getUsername());
         }
         textViewMessage = (TextView) messageView.findViewById(R.id.text_view_message);
-        textViewUsername = (TextView) messageView.findViewById(R.id.text_view_username);
-        textViewStatus = (TextView) messageView.findViewById(R.id.text_view_status);
         textViewMessage.setText(item.getMessage());
-        textViewUsername.setText(item.getUsername());
-        textViewStatus.setText(item.getStatus());
+
         return messageView;
     }
 }

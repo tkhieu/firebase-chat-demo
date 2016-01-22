@@ -2,6 +2,8 @@
 package com.mysquar.mychat.models;
 
 import javax.annotation.Generated;
+
+import com.firebase.client.DataSnapshot;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -35,8 +37,16 @@ public class ChatItem {
         this.setMessage(message);
     }
 
-    public ChatItem(){
+    public ChatItem(DataSnapshot dataSnapshot){
+        ChatItem tempItem = dataSnapshot.getValue(ChatItem.class);
+        this.setUsername(tempItem.getUsername());
+        this.setMessage(tempItem.getMessage());
+        this.setStatus(tempItem.getStatus());
+        this.setId(dataSnapshot.getKey());
     }
+
+    public ChatItem(){
+    };
 
     /**
      * 

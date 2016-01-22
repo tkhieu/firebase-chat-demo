@@ -34,14 +34,6 @@
                 android:text="Small Text"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/text_view_status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Small Text"
-                android:textSize="6dp"
-                android:textStyle="italic" />
         </LinearLayout>
     </me.himanshusoni.chatmessageview.ChatMessageView>
 

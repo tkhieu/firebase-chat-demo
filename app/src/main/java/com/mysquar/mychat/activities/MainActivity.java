@@ -34,6 +34,26 @@ public class MainActivity extends AppCompatActivity {
     List<ChatItem> chatItemList;
     ChatViewAdapter adapter;
     String username;
+    TextView.OnEditorActionListener onEditorActionListener = new TextView.OnEditorActionListener() {
+        @Override
+        public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+
+            String content = v.getText().toString();
+
+            if (content.equals("")) {
+                return false;
+            }
+            ChatItem item = new ChatItem(username, content);
+            item.setStatus(ChatHelper.CHAT_STATUS_SENDING);
+            chatItemList.add(item);
+            adapter.notifyDataSetChanged();
+            listViewChatContent.smoothScrollToPosition(adapter.getCount() - 1);
+            String id = FirebaseHelper.getInstance().saveChatItem(item);
+            item.setId(id);
+            editTextChatInput.setText("");
+            return true;
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,35 +71,39 @@ public class MainActivity extends AppCompatActivity {
         FirebaseHelper.getInstance().getChatFirebaseClient().addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                ChatItem tempItem = dataSnapshot.getValue(ChatItem.class);
-                tempItem.setId(dataSnapshot.getKey());
+                ChatItem tempItem = new ChatItem(dataSnapshot);
 
-                if(ChatHelper.getInstance(MainActivity.this).isFromThisUser(tempItem)){
-                    if(tempItem.getStatus().equals(ChatHelper.CHAT_STATUS_SENDING)) {
+                if (ChatHelper.getInstance(MainActivity.this).isFromThisUser(tempItem)) {
+                    if (tempItem.getStatus().equals(ChatHelper.CHAT_STATUS_SENDING)) {
                         tempItem.setStatus(ChatHelper.CHAT_STATUS_DELIVERED);
                         FirebaseHelper.getInstance().updateChatItemStatus(tempItem);
                     }
                 } else {
-                    if(tempItem.getStatus().equals(ChatHelper.CHAT_STATUS_DELIVERED)){
-                        tempItem.setStatus(ChatHelper.CHAT_STATUS_RECEIVED);
-                        FirebaseHelper.getInstance().updateChatItemStatus(tempItem);
-                    }
+                    tempItem.setStatus(ChatHelper.CHAT_STATUS_RECEIVED);
+                    FirebaseHelper.getInstance().updateChatItemStatus(tempItem);
                 }
 
-                ChatItem item = ChatListHelper.findItem(chatItemList,tempItem);
-                if(item == null){
+                ChatItem item = ChatListHelper.findItem(chatItemList, tempItem);
+                if (item == null) {
                     chatItemList.add(tempItem);
-                    adapter.notifyDataSetChanged();
-                    listViewChatContent.smoothScrollToPosition(adapter.getCount()-1);
                 }
+                adapter.notifyDataSetChanged();
+                listViewChatContent.smoothScrollToPosition(adapter.getCount() - 1);
             }
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                ChatItem tempItem = dataSnapshot.getValue(ChatItem.class);
-                tempItem.setId(dataSnapshot.getKey());
+                ChatItem tempItem = new ChatItem(dataSnapshot);
+                ChatItem item = ChatListHelper.findItem(chatItemList, tempItem);
+                if (item == null) {
+                    chatItemList.add(tempItem);
 
-
+                } else {
+                    item.setStatus(tempItem.getStatus());
+                    item.setUsername(tempItem.getUsername());
+                    item.setMessage(tempItem.getMessage());
+                }
+                adapter.notifyDataSetChanged();
             }
 
             @Override
@@ -98,25 +122,4 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-    TextView.OnEditorActionListener onEditorActionListener = new TextView.OnEditorActionListener() {
-        @Override
-        public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-
-            String content = v.getText().toString();
-
-            if (content.equals("")) {
-                return false;
-            }
-            ChatItem item = new ChatItem(username, content);
-            item.setStatus(ChatHelper.CHAT_STATUS_SENDING);
-            chatItemList.add(item);
-            adapter.notifyDataSetChanged();
-            listViewChatContent.smoothScrollToPosition(adapter.getCount()-1);
-            String id = FirebaseHelper.getInstance().saveChatItem(item);
-            item.setId(id);
-            editTextChatInput.setText("");
-            return true;
-        }
-    };
 }
