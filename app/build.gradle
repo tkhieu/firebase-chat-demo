@@ -38,9 +38,6 @@ dependencies {
     compile 'javax.annotation:jsr250-api:1.0'
     compile 'com.google.code.gson:gson:2.5'
     compile 'com.jakewharton:butterknife:7.0.1'
-
-    testCompile 'junit:junit:4.12'
-    testCompile "org.mockito:mockito-core:1.9.5"
-
+    compile 'me.himanshusoni.chatmessageview:chat-message-view:1.0.3'
 
 }

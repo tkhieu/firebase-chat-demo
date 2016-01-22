@@ -20,5 +20,6 @@
         android:id="@+id/listViewChatContent"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:layout_above="@+id/editTextChatInput" />
+        android:layout_above="@+id/editTextChatInput"
+        android:divider="@null" />
 </RelativeLayout>
