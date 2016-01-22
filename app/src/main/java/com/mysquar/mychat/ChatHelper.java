@@ -15,6 +15,9 @@ public class ChatHelper {
     private Context context;
     final String KEY_CHAT_USERNAME = "com.mysquar.mychat.ChatUsername";
     final String KEY_CHAT_SHAREREF = "com.mysquar.mychat.chat";
+    public static String CHAT_STATUS_SENDING = "sending";
+    public static String CHAT_STATUS_DELIVERED = "delivered";
+    public static String CHAT_STATUS_RECEIVED = "received";
     String username;
 
     public static ChatHelper getInstance(Context context){

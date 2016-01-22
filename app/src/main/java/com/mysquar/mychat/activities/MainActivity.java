@@ -11,6 +11,7 @@ import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.FirebaseError;
 import com.mysquar.mychat.ChatHelper;
+import com.mysquar.mychat.ChatListHelper;
 import com.mysquar.mychat.FirebaseHelper;
 import com.mysquar.mychat.R;
 import com.mysquar.mychat.adapters.ChatViewAdapter;
@@ -54,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
                     return false;
                 }
                 ChatItem item = new ChatItem(username, content);
-                item.setStatus("sending");
+                item.setStatus(ChatHelper.CHAT_STATUS_SENDING);
                 chatItemList.add(item);
                 adapter.notifyDataSetChanged();
                 listViewChatContent.smoothScrollToPosition(adapter.getCount()-1);
@@ -70,14 +71,27 @@ public class MainActivity extends AppCompatActivity {
         FirebaseHelper.getInstance().getChatFirebaseClient().addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                ChatItem item = dataSnapshot.getValue(ChatItem.class);
-                item.setId(dataSnapshot.getKey());
-                if(ChatHelper.getInstance(MainActivity.this).isFromThisUser(item)){
-                    item.setStatus("delivered");
+                ChatItem tempItem = dataSnapshot.getValue(ChatItem.class);
+                tempItem.setId(dataSnapshot.getKey());
+
+                if(ChatHelper.getInstance(MainActivity.this).isFromThisUser(tempItem)){
+                    if(tempItem.getStatus().equals(ChatHelper.CHAT_STATUS_SENDING)) {
+                        tempItem.setStatus(ChatHelper.CHAT_STATUS_DELIVERED);
+                        FirebaseHelper.getInstance().updateChatItemStatus(tempItem);
+                    }
                 } else {
-                    item.setStatus("received");
+                    if(tempItem.getStatus().equals(ChatHelper.CHAT_STATUS_DELIVERED)){
+                        tempItem.setStatus(ChatHelper.CHAT_STATUS_RECEIVED);
+                        FirebaseHelper.getInstance().updateChatItemStatus(tempItem);
+                    }
                 }
-                FirebaseHelper.getInstance().updateChatItemStatus(item);
+
+                ChatItem item = ChatListHelper.findItem(chatItemList,tempItem);
+                if(item == null){
+                    chatItemList.add(tempItem);
+                    adapter.notifyDataSetChanged();
+                    listViewChatContent.smoothScrollToPosition(adapter.getCount()-1);
+                }
             }
 
             @Override
