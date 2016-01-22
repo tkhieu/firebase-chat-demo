@@ -45,27 +45,7 @@ public class MainActivity extends AppCompatActivity {
         adapter = new ChatViewAdapter(MainActivity.this, 0, chatItemList);
         listViewChatContent.setAdapter(adapter);
         editTextChatInput.setImeActionLabel("Send", KeyEvent.KEYCODE_ENTER);
-        editTextChatInput.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-
-                String content = v.getText().toString();
-
-                if (content.equals("")) {
-                    return false;
-                }
-                ChatItem item = new ChatItem(username, content);
-                item.setStatus(ChatHelper.CHAT_STATUS_SENDING);
-                chatItemList.add(item);
-                adapter.notifyDataSetChanged();
-                listViewChatContent.smoothScrollToPosition(adapter.getCount()-1);
-                String id = FirebaseHelper.getInstance().saveChatItem(item);
-                item.setId(id);
-                editTextChatInput.setText("");
-                return true;
-            }
-        });
-
+        editTextChatInput.setOnEditorActionListener(onEditorActionListener);
 
         //TODO: Will move it to presenter to have best design and remove logic code inside activity
         FirebaseHelper.getInstance().getChatFirebaseClient().addChildEventListener(new ChildEventListener() {
@@ -115,4 +95,25 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    TextView.OnEditorActionListener onEditorActionListener = new TextView.OnEditorActionListener() {
+        @Override
+        public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+
+            String content = v.getText().toString();
+
+            if (content.equals("")) {
+                return false;
+            }
+            ChatItem item = new ChatItem(username, content);
+            item.setStatus(ChatHelper.CHAT_STATUS_SENDING);
+            chatItemList.add(item);
+            adapter.notifyDataSetChanged();
+            listViewChatContent.smoothScrollToPosition(adapter.getCount()-1);
+            String id = FirebaseHelper.getInstance().saveChatItem(item);
+            item.setId(id);
+            editTextChatInput.setText("");
+            return true;
+        }
+    };
 }
