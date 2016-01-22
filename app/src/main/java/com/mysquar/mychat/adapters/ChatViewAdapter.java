@@ -41,24 +41,19 @@ public class ChatViewAdapter extends ArrayAdapter<ChatItem> {
         ChatItem item = chatItemList.get(position);
         View messageView;
         TextView textViewMessage;
+        TextView textViewUsername;
+        TextView textViewStatus;
         if(ChatHelper.getInstance(context).isFromThisUser(item)){
             messageView = inflater.inflate(R.layout.cell_chat_item_mine, parent, false);
         } else {
             messageView = inflater.inflate(R.layout.cell_chat_item_other, parent, false);
         }
         textViewMessage = (TextView) messageView.findViewById(R.id.text_view_message);
+        textViewUsername = (TextView) messageView.findViewById(R.id.text_view_username);
+        textViewStatus = (TextView) messageView.findViewById(R.id.text_view_status);
         textViewMessage.setText(item.getMessage());
+        textViewUsername.setText(item.getUsername());
+        textViewStatus.setText(item.getStatus());
         return messageView;
-    }
-
-    static class ViewHolder {
-        @Bind(R.id.text_chat_content)
-        TextView textViewChatContent;
-        @Bind((R.id.message_view))
-        ChatMessageView chatMessageView;
-
-        public ViewHolder(View view) {
-            ButterKnife.bind(this, view);
-        }
     }
 }

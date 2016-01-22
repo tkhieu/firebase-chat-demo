@@ -76,6 +76,9 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                ChatItem tempItem = dataSnapshot.getValue(ChatItem.class);
+                tempItem.setId(dataSnapshot.getKey());
+
 
             }
 
