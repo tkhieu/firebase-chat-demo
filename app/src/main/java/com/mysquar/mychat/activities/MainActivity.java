@@ -7,6 +7,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.mysquar.mychat.FirebaseHelper;
 import com.mysquar.mychat.R;
 import com.mysquar.mychat.adapters.ChatViewAdapter;
 import com.mysquar.mychat.models.ChatItem;
@@ -52,6 +53,7 @@ public class MainActivity extends ActionBarActivity {
                     return false;
                 }
                 ChatItem item = new ChatItem("USER_1", content);
+                FirebaseHelper.getInstance().saveChatItem(item);
                 chatItemList.add(item);
                 editTextChatInput.setText("");
                 adapter.notifyDataSetChanged();

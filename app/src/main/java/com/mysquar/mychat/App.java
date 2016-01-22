@@ -1,6 +1,7 @@
 package com.mysquar.mychat;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.firebase.client.Firebase;
 
@@ -9,11 +10,11 @@ import com.firebase.client.Firebase;
  */
 public class App extends Application {
 
-    public static final String FIREBASE_URL = "https://mysquar-test.firebaseio.com/chat";
-
     @Override
     public void onCreate() {
         super.onCreate();
-        FirebaseHelper.getInstance(getApplicationContext());
+        AppConfig.getInstance();
+        Firebase.setAndroidContext(getApplicationContext());
+        FirebaseHelper.getInstance();
     }
 }
