@@ -1,4 +1,4 @@
-package com.mysquar.mychat;
+package com.mysquar.mychat.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -7,6 +7,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.mysquar.mychat.R;
 import com.mysquar.mychat.adapters.ChatViewAdapter;
 import com.mysquar.mychat.models.ChatItem;
 
