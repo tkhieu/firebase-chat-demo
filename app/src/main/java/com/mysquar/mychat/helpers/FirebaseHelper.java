@@ -1,8 +1,7 @@
-package com.mysquar.mychat;
-
-import android.content.Context;
+package com.mysquar.mychat.helpers;
 
 import com.firebase.client.Firebase;
+import com.mysquar.mychat.AppConfig;
 import com.mysquar.mychat.models.ChatItem;
 
 import java.util.HashMap;

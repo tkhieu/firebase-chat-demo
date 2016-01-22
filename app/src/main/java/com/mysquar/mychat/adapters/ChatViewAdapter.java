@@ -5,18 +5,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
 import android.widget.TextView;
 
-import com.mysquar.mychat.ChatHelper;
+import com.mysquar.mychat.helpers.ChatHelper;
 import com.mysquar.mychat.R;
 import com.mysquar.mychat.models.ChatItem;
 
 import java.util.List;
-
-import butterknife.Bind;
-import butterknife.ButterKnife;
-import me.himanshusoni.chatmessageview.ChatMessageView;
 
 /**
  * Created by kimhieu on 1/22/16.

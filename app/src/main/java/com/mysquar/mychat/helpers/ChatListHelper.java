@@ -1,4 +1,4 @@
-package com.mysquar.mychat;
+package com.mysquar.mychat.helpers;
 
 import android.content.ClipData;
 

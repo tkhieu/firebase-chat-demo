@@ -1,9 +1,9 @@
 package com.mysquar.mychat;
 
 import android.app.Application;
-import android.content.Context;
 
 import com.firebase.client.Firebase;
+import com.mysquar.mychat.helpers.FirebaseHelper;
 
 /**
  * Created by anhnguyen on 12/8/15.
