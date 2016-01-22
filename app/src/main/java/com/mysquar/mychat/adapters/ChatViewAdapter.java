@@ -34,6 +34,8 @@ public class ChatViewAdapter extends ArrayAdapter<ChatItem> {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView = inflater.inflate(R.layout.cell_chat_item, parent, false);
         TextView textView = (TextView) rowView.findViewById(R.id.text_chat_content);
+        ChatItem item = chatItemList.get(position);
+        textView.setText(item.getMessage());
 
         return rowView;
     }

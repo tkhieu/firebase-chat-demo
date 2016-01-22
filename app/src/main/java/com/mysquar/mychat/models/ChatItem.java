@@ -15,6 +15,11 @@ public class ChatItem {
     @Expose
     private String message;
 
+    public ChatItem(String username, String message){
+        this.setUsername(username);
+        this.setMessage(message);
+    }
+
     /**
      * 
      * @return
