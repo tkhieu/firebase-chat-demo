@@ -53,9 +53,13 @@ public class MainActivity extends AppCompatActivity {
                 if (content.equals("")) {
                     return false;
                 }
-
                 ChatItem item = new ChatItem(username, content);
-                FirebaseHelper.getInstance().saveChatItem(item);
+                item.setStatus("sending");
+                chatItemList.add(item);
+                adapter.notifyDataSetChanged();
+                listViewChatContent.smoothScrollToPosition(adapter.getCount()-1);
+                String id = FirebaseHelper.getInstance().saveChatItem(item);
+                item.setId(id);
                 editTextChatInput.setText("");
                 return true;
             }
@@ -67,9 +71,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 ChatItem item = dataSnapshot.getValue(ChatItem.class);
-                chatItemList.add(item);
-                adapter.notifyDataSetChanged();
-                listViewChatContent.smoothScrollToPosition(adapter.getCount()-1);
+                item.setId(dataSnapshot.getKey());
+                if(ChatHelper.getInstance(MainActivity.this).isFromThisUser(item)){
+                    item.setStatus("delivered");
+                } else {
+                    item.setStatus("received");
+                }
+                FirebaseHelper.getInstance().updateChatItemStatus(item);
             }
 
             @Override
