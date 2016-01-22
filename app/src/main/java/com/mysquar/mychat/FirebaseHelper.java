@@ -11,7 +11,7 @@ import com.mysquar.mychat.models.ChatItem;
 public class FirebaseHelper {
 
 
-    private static String CHAT_COLLECTION = "chat";
+    final String CHAT_COLLECTION = "chat";
 
 
     private static FirebaseHelper instance;

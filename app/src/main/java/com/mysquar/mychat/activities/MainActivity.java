@@ -2,6 +2,7 @@ package com.mysquar.mychat.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -19,7 +20,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends AppCompatActivity {
 
     @Bind(R.id.editTextChatInput)
     EditText editTextChatInput;
@@ -34,11 +35,7 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        chatItemList = new ArrayList<ChatItem>();
-
-
-        chatItemList.add(new ChatItem("USER_1", "Hello from U1"));
-        chatItemList.add(new ChatItem("USER_2", "Hello from U2"));
+        chatItemList = new ArrayList<>();
 
         adapter = new ChatViewAdapter(MainActivity.this, 0, chatItemList);
         listViewChatContent.setAdapter(adapter);
@@ -60,6 +57,5 @@ public class MainActivity extends ActionBarActivity {
                 return true;
             }
         });
-
     }
 }
