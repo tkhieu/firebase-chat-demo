@@ -15,6 +15,10 @@ public class ChatHelper {
     private Context context;
     final String KEY_CHAT_USERNAME = "com.mysquar.mychat.ChatUsername";
     final String KEY_CHAT_SHAREREF = "com.mysquar.mychat.chat";
+    public static String CHAT_STATUS_SENDING = "sending";
+    public static String CHAT_STATUS_DELIVERED = "delivered";
+    public static String CHAT_STATUS_RECEIVED = "received";
+    String username;
 
     public static ChatHelper getInstance(Context context){
         if(instance == null){
@@ -25,6 +29,7 @@ public class ChatHelper {
 
     private ChatHelper(Context context){
         this.context = context;
+        username = getChatUsername();
     }
 
     private static String getDeviceId(Context context){
@@ -40,6 +45,13 @@ public class ChatHelper {
             saveCreatedUsername(username);
         }
         return username;
+    }
+
+    public boolean isFromThisUser(ChatItem item){
+        if(item.getUsername().equals(username)){
+            return true;
+        }
+        return false;
     }
 
     private String getCreatedUsername(){
@@ -58,5 +70,7 @@ public class ChatHelper {
         editor.putString(KEY_CHAT_USERNAME,username);
         editor.commit();
     }
+
+
 
 }

@@ -14,6 +14,21 @@ public class ChatItem {
     @SerializedName("message")
     @Expose
     private String message;
+    @SerializedName("status")
+    @Expose
+    private String status;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    @SerializedName("id")
+    @Expose
+    private String id;
 
     public ChatItem(String username, String message){
         this.setUsername(username);
@@ -58,5 +73,27 @@ public class ChatItem {
     public void setMessage(String message) {
         this.message = message;
     }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+//    public enum Status {
+//        SENDING("sending"),DELIVERED("delivered"),RECEIVED("received");
+//
+//        public String getValue() {
+//            return value;
+//        }
+//
+//        private String value;
+//
+//        Status(String sending) {
+//            value = sending;
+//        }
+//    }
 
 }
