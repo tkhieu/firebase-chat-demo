@@ -8,6 +8,6 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Small Text"
-        android:id="@+id/textView"
+        android:id="@+id/text_chat_content"
         android:padding="5dp" />
 </LinearLayout>
