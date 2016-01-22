@@ -81,19 +81,4 @@ public class ChatItem {
     public void setStatus(String status) {
         this.status = status;
     }
-
-//    public enum Status {
-//        SENDING("sending"),DELIVERED("delivered"),RECEIVED("received");
-//
-//        public String getValue() {
-//            return value;
-//        }
-//
-//        private String value;
-//
-//        Status(String sending) {
-//            value = sending;
-//        }
-//    }
-
 }
