@@ -30,7 +30,7 @@ public class ChatHelper {
     private static String getDeviceId(Context context){
         return Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
     }
-    
+
     public String getChatUsername(){
         String username = getCreatedUsername();
         if(username.equals("")){

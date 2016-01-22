@@ -31,12 +31,11 @@ public class FirebaseHelper {
     public void saveChatItem(ChatItem chatItem){
         Firebase chatCollectionRef = firebaseClient.child(CHAT_COLLECTION);
         Firebase newChatItem = chatCollectionRef.push();
-        newChatItem.setValue(chatItem.getMessage());
+        newChatItem.setValue(chatItem);
     }
 
     public Firebase getChatFirebaseClient(){
         Firebase chatCollectionRef = firebaseClient.child(CHAT_COLLECTION);
         return chatCollectionRef;
     }
-
 }

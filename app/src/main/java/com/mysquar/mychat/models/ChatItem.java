@@ -20,6 +20,9 @@ public class ChatItem {
         this.setMessage(message);
     }
 
+    public ChatItem(){
+    }
+
     /**
      * 
      * @return
