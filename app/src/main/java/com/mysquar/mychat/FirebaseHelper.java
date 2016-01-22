@@ -34,4 +34,9 @@ public class FirebaseHelper {
         newChatItem.setValue(chatItem.getMessage());
     }
 
+    public Firebase getChatFirebaseClient(){
+        Firebase chatCollectionRef = firebaseClient.child(CHAT_COLLECTION);
+        return chatCollectionRef;
+    }
+
 }

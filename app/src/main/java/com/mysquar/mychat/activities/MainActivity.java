@@ -8,6 +8,9 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.firebase.client.ChildEventListener;
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.FirebaseError;
 import com.mysquar.mychat.FirebaseHelper;
 import com.mysquar.mychat.R;
 import com.mysquar.mychat.adapters.ChatViewAdapter;
@@ -51,10 +54,40 @@ public class MainActivity extends AppCompatActivity {
                 }
                 ChatItem item = new ChatItem("USER_1", content);
                 FirebaseHelper.getInstance().saveChatItem(item);
-                chatItemList.add(item);
                 editTextChatInput.setText("");
-                adapter.notifyDataSetChanged();
                 return true;
+            }
+        });
+
+
+        //TODO: Will move it to presenter to have best design and remove logic code inside activity
+        FirebaseHelper.getInstance().getChatFirebaseClient().addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                ChatItem item = new ChatItem("USER_1", dataSnapshot.getValue().toString());
+                chatItemList.add(item);
+                adapter.notifyDataSetChanged();
+                listViewChatContent.smoothScrollToPosition(adapter.getCount()-1);
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
             }
         });
     }
