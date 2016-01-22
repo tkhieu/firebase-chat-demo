@@ -1,7 +1,6 @@
 package com.mysquar.mychat.activities;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.widget.EditText;
@@ -11,6 +10,7 @@ import android.widget.TextView;
 import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.FirebaseError;
+import com.mysquar.mychat.ChatHelper;
 import com.mysquar.mychat.FirebaseHelper;
 import com.mysquar.mychat.R;
 import com.mysquar.mychat.adapters.ChatViewAdapter;
@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
     List<ChatItem> chatItemList;
     ChatViewAdapter adapter;
+    String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         chatItemList = new ArrayList<>();
-
+        username = ChatHelper.getInstance(MainActivity.this).getChatUsername();
         adapter = new ChatViewAdapter(MainActivity.this, 0, chatItemList);
         listViewChatContent.setAdapter(adapter);
         editTextChatInput.setImeActionLabel("Send", KeyEvent.KEYCODE_ENTER);
@@ -52,7 +53,8 @@ public class MainActivity extends AppCompatActivity {
                 if (content.equals("")) {
                     return false;
                 }
-                ChatItem item = new ChatItem("USER_1", content);
+
+                ChatItem item = new ChatItem(username, content);
                 FirebaseHelper.getInstance().saveChatItem(item);
                 editTextChatInput.setText("");
                 return true;
@@ -64,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         FirebaseHelper.getInstance().getChatFirebaseClient().addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                ChatItem item = new ChatItem("USER_1", dataSnapshot.getValue().toString());
+                ChatItem item = dataSnapshot.getValue(ChatItem.class);
                 chatItemList.add(item);
                 adapter.notifyDataSetChanged();
                 listViewChatContent.smoothScrollToPosition(adapter.getCount()-1);
