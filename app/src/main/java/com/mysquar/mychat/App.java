@@ -14,8 +14,6 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
-        Firebase.setAndroidContext(this);
-        new Firebase(FIREBASE_URL);
+        FirebaseHelper.getInstance(getApplicationContext());
     }
 }
