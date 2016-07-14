@@ -1,4 +1,4 @@
-package com.mysquar.mychat.adapters;
+package com.mysquar.chat.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,9 +7,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.mysquar.mychat.helpers.ChatHelper;
-import com.mysquar.mychat.R;
-import com.mysquar.mychat.models.ChatItem;
+import com.mysquar.chat.helpers.ChatHelper;
+import com.mysquar.chat.R;
+import com.mysquar.chat.models.ChatItem;
 
 import java.util.List;
 

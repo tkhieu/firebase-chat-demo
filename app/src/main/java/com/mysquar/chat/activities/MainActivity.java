@@ -1,4 +1,4 @@
-package com.mysquar.mychat.activities;
+package com.mysquar.chat.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -7,15 +7,15 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.firebase.client.ChildEventListener;
-import com.firebase.client.DataSnapshot;
-import com.firebase.client.FirebaseError;
-import com.mysquar.mychat.helpers.ChatHelper;
-import com.mysquar.mychat.helpers.ChatListHelper;
-import com.mysquar.mychat.helpers.FirebaseHelper;
-import com.mysquar.mychat.R;
-import com.mysquar.mychat.adapters.ChatViewAdapter;
-import com.mysquar.mychat.models.ChatItem;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.mysquar.chat.helpers.ChatHelper;
+import com.mysquar.chat.helpers.ChatListHelper;
+import com.mysquar.chat.helpers.FirebaseHelper;
+import com.mysquar.chat.R;
+import com.mysquar.chat.adapters.ChatViewAdapter;
+import com.mysquar.chat.models.ChatItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onCancelled(FirebaseError firebaseError) {
+            public void onCancelled(DatabaseError DatabaseError) {
 
             }
         });

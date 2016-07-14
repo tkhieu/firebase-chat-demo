@@ -1,4 +1,4 @@
-package com.mysquar.mychat;
+package com.mysquar.chat;
 
 /**
  * Created by kimhieu on 1/22/16.
@@ -7,7 +7,6 @@ package com.mysquar.mychat;
 public class AppConfig{
 
 
-    public static String FIREBASE_URL;
     // Singleton
     private static AppConfig instance = null;
     /**
@@ -17,6 +16,7 @@ public class AppConfig{
 
 
     public AppConfig(Mode mode) {
+        String FIREBASE_URL;
         if (mode == Mode.DEV) {
             FIREBASE_URL = "https://mysquar-test.firebaseio.com";
 

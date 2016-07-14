@@ -48,7 +48,7 @@ You are expected to implement a small chat application.
     public void onChildMoved(DataSnapshot dataSnapshot, String s) {}
     
     @Override
-    public void onCancelled(FirebaseError firebaseError) {}
+    public void onCancelled(DatabaseError DatabaseError) {}
   });
 ```
 * Compile and run the app on 2 devices to test the real-time chat

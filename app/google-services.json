@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "566884947066",
+    "firebase_url": "https://idea-global.firebaseio.com",
+    "project_id": "idea-global",
+    "storage_bucket": "idea-global.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:566884947066:android:5905dc8c9cab8c1f",
+        "android_client_info": {
+          "package_name": "com.mysquar.chat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "566884947066-hck9kabau4tqjaqsa5b79hoclfos968k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mysquar.chat",
+            "certificate_hash": "A423B3057D7E1B777E2E9F820946E4CCB9888C4D"
+          }
+        },
+        {
+          "client_id": "566884947066-kijn9c3r01mfqef5rv4uknvl56bd4r6e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCygKK-C7M36ID_l20IX-ev61ehuM2vhOE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "566884947066-kijn9c3r01mfqef5rv4uknvl56bd4r6e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

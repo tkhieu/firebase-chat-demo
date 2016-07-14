@@ -1,10 +1,10 @@
-package com.mysquar.mychat.helpers;
+package com.mysquar.chat.helpers;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.provider.Settings;
 
-import com.mysquar.mychat.models.ChatItem;
+import com.mysquar.chat.models.ChatItem;
 
 /**
  * Created by kimhieu on 1/22/16.
@@ -13,8 +13,8 @@ public class ChatHelper {
 
     private static ChatHelper instance;
     private Context context;
-    final String KEY_CHAT_USERNAME = "com.mysquar.mychat.ChatUsername";
-    final String KEY_CHAT_SHAREREF = "com.mysquar.mychat.chat";
+    final String KEY_CHAT_USERNAME = "com.mysquar.chat.ChatUsername";
+    final String KEY_CHAT_SHAREREF = "com.mysquar.chat.chat";
     public static String CHAT_STATUS_SENDING = "sending";
     public static String CHAT_STATUS_DELIVERED = "delivered";
     public static String CHAT_STATUS_RECEIVED = "received";

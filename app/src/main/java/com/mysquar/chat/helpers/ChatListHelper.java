@@ -1,8 +1,6 @@
-package com.mysquar.mychat.helpers;
+package com.mysquar.chat.helpers;
 
-import android.content.ClipData;
-
-import com.mysquar.mychat.models.ChatItem;
+import com.mysquar.chat.models.ChatItem;
 
 import java.util.List;
 

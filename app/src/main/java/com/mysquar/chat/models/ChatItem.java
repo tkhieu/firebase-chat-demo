@@ -1,13 +1,12 @@
 
-package com.mysquar.mychat.models;
+package com.mysquar.chat.models;
 
 import javax.annotation.Generated;
 
-import com.firebase.client.DataSnapshot;
+import com.google.firebase.database.DataSnapshot;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-@Generated("org.jsonschema2pojo")
 public class ChatItem {
 
     @SerializedName("username")

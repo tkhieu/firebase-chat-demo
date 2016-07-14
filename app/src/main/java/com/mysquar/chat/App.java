@@ -1,9 +1,10 @@
-package com.mysquar.mychat;
+package com.mysquar.chat;
 
 import android.app.Application;
 
-import com.firebase.client.Firebase;
-import com.mysquar.mychat.helpers.FirebaseHelper;
+
+import com.google.firebase.database.FirebaseDatabase;
+import com.mysquar.chat.helpers.FirebaseHelper;
 
 /**
  * Created by anhnguyen on 12/8/15.
@@ -14,7 +15,7 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         AppConfig.getInstance();
-        Firebase.setAndroidContext(getApplicationContext());
         FirebaseHelper.getInstance();
+
     }
 }
